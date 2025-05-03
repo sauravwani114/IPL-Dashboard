@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="Dashboard Output" />
+    <meta name="keywords" content="Epi, Info, Dashboard" />
+    <meta name="author" content="Epi Info 7" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <link rel="icon" href="https://icon2.cleanpng.com/20180331/vee/avcox95kd.webp" type="image/png">
+    <style type="text/css">
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #4a7ac9;
+            font-family: Cambria, 'Times New Roman', serif;
+        }
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+            text-align: left;
+        }
+        .chart {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        .bar-container {
+            background-color: #eee;
+            border-radius: 4px;
+            height: 16px;
+            width: 100%;
+        }
+        .bar {
+            height: 16px;
+            background-color: #28a745;
+            border-radius: 4px;
+        }
+        .freq-cell {
+            width: 80px;
+            font-weight: bold;
+        }
+        /* Responsive for smaller screens */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            table, th, td {
+                font-size: 12px;
+            }
+            .freq-cell {
+                width: 60px;
+            }
+        }
+    </style>
+    <title>IPL Dashboard</title>
+</head>
+<body>
+    <h1><center>IPL Dashboard</center></h1>
+    <hr>
+
+    <!-- <p><strong>Current data source:</strong> CSV File<br/>
+    <strong>Record count:</strong> 1095 (Deleted records excluded)<br/>
+    <strong>Date:</strong> 03-05-2025 09:36 AM</p> -->
+
+    <h2><center>Winners Frequency Table</center></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Winner</th>
+            <th class="freq-cell">Frequency</th>
+            <th>Frequency Bar</th>
+            <th>Percent</th>
+            <th>Cum. Percent</th>
+            <th>Wilson 95% LCL</th>
+            <th>Wilson 95% UCL</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Max freq in this table is 144 -->
+        <tr>
+            <td>Mumbai Indians</td>
+            <td class="freq-cell">144</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:100%;"></div></div>
+            </td>
+            <td>13.15%</td>
+            <td>13.15%</td>
+            <td>11.28%</td>
+            <td>15.28%</td>
+        </tr>
+        <tr>
+            <td>Chennai Super Kings</td>
+            <td class="freq-cell">138</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:95.83%;"></div></div>
+            </td>
+            <td>12.60%</td>
+            <td>25.75%</td>
+            <td>10.77%</td>
+            <td>14.70%</td>
+        </tr>
+        <tr>
+            <td>Kolkata Knight Riders</td>
+            <td class="freq-cell">131</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:90.97%;"></div></div>
+            </td>
+            <td>11.96%</td>
+            <td>37.72%</td>
+            <td>10.17%</td>
+            <td>14.02%</td>
+        </tr>
+        <tr>
+            <td>Royal Challengers Bangalore</td>
+            <td class="freq-cell">116</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:80.56%;"></div></div>
+            </td>
+            <td>10.59%</td>
+            <td>48.31%</td>
+            <td>8.91%</td>
+            <td>12.56%</td>
+        </tr>
+        <tr>
+            <td>Rajasthan Royals</td>
+            <td class="freq-cell">112</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:77.78%;"></div></div>
+            </td>
+            <td>10.23%</td>
+            <td>58.54%</td>
+            <td>8.57%</td>
+            <td>12.16%</td>
+        </tr>
+        <tr>
+            <td>Kings XI Punjab</td>
+            <td class="freq-cell">88</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:61.11%;"></div></div>
+            </td>
+            <td>8.04%</td>
+            <td>66.58%</td>
+            <td>6.57%</td>
+            <td>9.80%</td>
+        </tr>
+        <tr>
+            <td>Sunrisers Hyderabad</td>
+            <td class="freq-cell">88</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:61.11%;"></div></div>
+            </td>
+            <td>8.04%</td>
+            <td>74.61%</td>
+            <td>6.57%</td>
+            <td>9.80%</td>
+        </tr>
+        <tr>
+            <td>Delhi Daredevils</td>
+            <td class="freq-cell">67</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:46.53%;"></div></div>
+            </td>
+            <td>6.12%</td>
+            <td>80.73%</td>
+            <td>4.85%</td>
+            <td>7.70%</td>
+        </tr>
+        <tr>
+            <td>Delhi Capitals</td>
+            <td class="freq-cell">48</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:33.33%;"></div></div>
+            </td>
+            <td>4.38%</td>
+            <td>85.11%</td>
+            <td>3.32%</td>
+            <td>5.76%</td>
+        </tr>
+        <tr>
+            <td>Deccan Chargers</td>
+            <td class="freq-cell">29</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:20.14%;"></div></div>
+            </td>
+            <td>2.65%</td>
+            <td>87.76%</td>
+            <td>1.85%</td>
+            <td>3.78%</td>
+        </tr>
+        <tr>
+            <td>Gujarat Titans</td>
+            <td class="freq-cell">28</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:19.44%;"></div></div>
+            </td>
+            <td>2.56%</td>
+            <td>90.32%</td>
+            <td>1.77%</td>
+            <td>3.67%</td>
+        </tr>
+        <tr>
+            <td>Lucknow Super Giants</td>
+            <td class="freq-cell">24</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:16.67%;"></div></div>
+            </td>
+            <td>2.19%</td>
+            <td>92.51%</td>
+            <td>1.48%</td>
+            <td>3.24%</td>
+        </tr>
+        <tr>
+            <td>Punjab Kings</td>
+            <td class="freq-cell">24</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:16.67%;"></div></div>
+            </td>
+            <td>2.19%</td>
+            <td>94.70%</td>
+            <td>1.48%</td>
+            <td>3.24%</td>
+        </tr>
+        <tr>
+            <td>Gujarat Lions</td>
+            <td class="freq-cell">13</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:9.03%;"></div></div>
+            </td>
+            <td>1.19%</td>
+            <td>95.89%</td>
+            <td>0.70%</td>
+            <td>2.02%</td>
+        </tr>
+        <tr>
+            <td>Pune Warriors</td>
+            <td class="freq-cell">12</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:8.33%;"></div></div>
+            </td>
+            <td>1.10%</td>
+            <td>96.99%</td>
+            <td>0.63%</td>
+            <td>1.91%</td>
+        </tr>
+        <tr>
+            <td>Rising Pune Supergiant</td>
+            <td class="freq-cell">10</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:6.94%;"></div></div>
+            </td>
+            <td>0.91%</td>
+            <td>97.90%</td>
+            <td>0.50%</td>
+            <td>1.67%</td>
+        </tr>
+        <tr>
+            <td>Royal Challengers Bengaluru</td>
+            <td class="freq-cell">7</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:4.86%;"></div></div>
+            </td>
+            <td>0.64%</td>
+            <td>98.54%</td>
+            <td>0.31%</td>
+            <td>1.31%</td>
+        </tr>
+        <tr>
+            <td>Kochi Tuskers Kerala</td>
+            <td class="freq-cell">6</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:4.17%;"></div></div>
+            </td>
+            <td>0.55%</td>
+            <td>99.09%</td>
+            <td>0.25%</td>
+            <td>1.19%</td>
+        </tr>
+        <tr>
+            <td>Rising Pune Supergiants</td>
+            <td class="freq-cell">5</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:3.47%;"></div></div>
+            </td>
+            <td>0.46%</td>
+            <td>99.54%</td>
+            <td>0.20%</td>
+            <td>1.06%</td>
+        </tr>
+        <tr>
+            <td>Missing</td>
+            <td class="freq-cell">5</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:3.47%;"></div></div>
+            </td>
+            <td>0.46%</td>
+            <td>100.00%</td>
+            <td>0.20%</td>
+            <td>1.06%</td>
+        </tr>
+        <tr>
+            <td><b>TOTAL</b></td>
+            <td class="freq-cell"><b>1095</b></td>
+            <td></td>
+            <td><b>100.00%</b></td>
+            <td><b>100.00%</b></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="chart">
+      <center><h2>Toss Decision Pie Chart</h2>
+              <img src="Pie_Chart.png" alt="Winners Pie Chart" />
+      </center>
+    </div>
+
+    <center><h2>Venue Frequency Table</h2></center>
+    <table>
+        <thead>
+        <tr>
+            <th>Venue</th>
+            <th class="freq-cell">Frequency</th>
+            <th>Frequency Bar</th>
+            <th>Percent</th>
+            <th>Cum. Percent</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Max freq in venue table is 77 -->
+        <tr>
+            <td>Eden Gardens</td>
+            <td class="freq-cell">77</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:100%;"></div></div>
+            </td>
+            <td>13.39%</td>
+            <td>13.39%</td>
+        </tr>
+        <tr>
+            <td>Wankhede Stadium</td>
+            <td class="freq-cell">73</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:94.81%;"></div></div>
+            </td>
+            <td>12.70%</td>
+            <td>26.09%</td>
+        </tr>
+        <tr>
+            <td>M Chinnaswamy Stadium</td>
+            <td class="freq-cell">65</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:84.42%;"></div></div>
+            </td>
+            <td>11.30%</td>
+            <td>37.39%</td>
+        </tr>
+        <tr>
+            <td>Feroz Shah Kotla</td>
+            <td class="freq-cell">60</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:77.92%;"></div></div>
+            </td>
+            <td>10.43%</td>
+            <td>47.83%</td>
+        </tr>
+        <tr>
+            <td>Rajiv Gandhi International Stadium, Uppal</td>
+            <td class="freq-cell">49</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:63.64%;"></div></div>
+            </td>
+            <td>8.52%</td>
+            <td>56.35%</td>
+        </tr>
+        <tr>
+            <td>MA Chidambaram Stadium, Chepauk</td>
+            <td class="freq-cell">48</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:62.34%;"></div></div>
+            </td>
+            <td>8.35%</td>
+            <td>64.70%</td>
+        </tr>
+        <tr>
+            <td>Sawai Mansingh Stadium</td>
+            <td class="freq-cell">47</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:61.04%;"></div></div>
+            </td>
+            <td>8.17%</td>
+            <td>72.87%</td>
+        </tr>
+        <tr>
+            <td>Dubai International Cricket Stadium</td>
+            <td class="freq-cell">46</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:59.74%;"></div></div>
+            </td>
+            <td>8.00%</td>
+            <td>80.87%</td>
+        </tr>
+        <tr>
+            <td>Punjab Cricket Association Stadium, Mohali</td>
+            <td class="freq-cell">35</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:45.45%;"></div></div>
+            </td>
+            <td>6.09%</td>
+            <td>86.96%</td>
+        </tr>
+        <tr>
+            <td>Sheikh Zayed Stadium</td>
+            <td class="freq-cell">29</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:37.66%;"></div></div>
+            </td>
+            <td>5.04%</td>
+            <td>92.00%</td>
+        </tr>
+        <tr>
+            <td>Narendra Modi Stadium, Ahmedabad</td>
+            <td class="freq-cell">24</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:31.17%;"></div></div>
+            </td>
+            <td>4.17%</td>
+            <td>96.17%</td>
+        </tr>
+        <tr>
+            <td>Maharashtra Cricket Association Stadium</td>
+            <td class="freq-cell">22</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:28.57%;"></div></div>
+            </td>
+            <td>3.83%</td>
+            <td>100.00%</td>
+        </tr>
+        <tr>
+            <td><b>TOTAL</b></td>
+            <td class="freq-cell"><b>575</b></td>
+            <td></td>
+            <td><b>100.00%</b></td>
+            <td><b>100.00%</b></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="chart">
+        <center><h2>Result Margin Bar Chart</h2></center>
+        <img src="Bar_Chart.png" alt="Venue Bar Chart" />
+    </div>
+
+    <center><h2>Umpire Frequency Table</h2></center>
+    <table>
+        <thead>
+        <tr>
+            <th>Umpire</th>
+            <th class="freq-cell">Frequency</th>
+            <th>Frequency Bar</th>
+            <th>Percent</th>
+            <th>Cum. Percent</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Max freq in umpire table 115 -->
+        <tr>
+            <td>AK Chaudhary</td>
+            <td class="freq-cell">115</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:100%;"></div></div>
+            </td>
+            <td>18.95%</td>
+            <td>18.95%</td>
+        </tr>
+        <tr>
+            <td>HDPK Dharmasena</td>
+            <td class="freq-cell">79</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:68.70%;"></div></div>
+            </td>
+            <td>13.01%</td>
+            <td>31.96%</td>
+        </tr>
+        <tr>
+            <td>KN Ananthapadmanabhan</td>
+            <td class="freq-cell">59</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:51.30%;"></div></div>
+            </td>
+            <td>9.72%</td>
+            <td>41.68%</td>
+        </tr>
+        <tr>
+            <td>CB Gaffaney</td>
+            <td class="freq-cell">53</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:46.09%;"></div></div>
+            </td>
+            <td>8.73%</td>
+            <td>50.41%</td>
+        </tr>
+        <tr>
+            <td>Asad Rauf</td>
+            <td class="freq-cell">51</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:44.35%;"></div></div>
+            </td>
+            <td>8.40%</td>
+            <td>58.81%</td>
+        </tr>
+        <tr>
+            <td>Nitin Menon</td>
+            <td class="freq-cell">50</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:43.48%;"></div></div>
+            </td>
+            <td>8.24%</td>
+            <td>67.05%</td>
+        </tr>
+        <tr>
+            <td>S Ravi</td>
+            <td class="freq-cell">48</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:41.74%;"></div></div>
+            </td>
+            <td>7.91%</td>
+            <td>74.96%</td>
+        </tr>
+        <tr>
+            <td>M Erasmus</td>
+            <td class="freq-cell">42</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:36.52%;"></div></div>
+            </td>
+            <td>6.92%</td>
+            <td>81.88%</td>
+        </tr>
+        <tr>
+            <td>Aleem Dar</td>
+            <td class="freq-cell">38</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:33.04%;"></div></div>
+            </td>
+            <td>6.26%</td>
+            <td>88.14%</td>
+        </tr>
+        <tr>
+            <td>BF Bowden</td>
+            <td class="freq-cell">36</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:31.30%;"></div></div>
+            </td>
+            <td>5.93%</td>
+            <td>94.07%</td>
+        </tr>
+        <tr>
+            <td>BNJ Oxenford</td>
+            <td class="freq-cell">36</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:31.30%;"></div></div>
+            </td>
+            <td>5.93%</td>
+            <td>100.00%</td>
+        </tr>
+        <tr>
+            <td><b>TOTAL</b></td>
+            <td class="freq-cell"><b>607</b></td>
+            <td></td>
+            <td><b>100.00%</b></td>
+            <td><b>100.00%</b></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="chart">
+        <center><h2>Umpire Area Chart</h2></center>
+        <img src="Area_Chart.png" alt="Umpire Area Chart" />
+    </div>
+
+    <center><h2>Player of the Match Frequency Table</h2></center>
+    <table>
+        <thead>
+        <tr>
+            <th>Player of match</th>
+            <th class="freq-cell">Frequency</th>
+            <th>Frequency Bar</th>
+            <th>Percent</th>
+            <th>Cum. Percent</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Max freq in player_of_match table is 18 -->
+        <tr>
+            <td>V Kohli</td>
+            <td class="freq-cell">18</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:100%;"></div></div>
+            </td>
+            <td>23.68%</td>
+            <td>23.68%</td>
+        </tr>
+        <tr>
+            <td>MS Dhoni</td>
+            <td class="freq-cell">17</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:94.44%;"></div></div>
+            </td>
+            <td>22.37%</td>
+            <td>46.05%</td>
+        </tr>
+        <tr>
+            <td>SK Raina</td>
+            <td class="freq-cell">14</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:77.78%;"></div></div>
+            </td>
+            <td>18.42%</td>
+            <td>64.47%</td>
+        </tr>
+        <tr>
+            <td>KL Rahul</td>
+            <td class="freq-cell">13</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:72.22%;"></div></div>
+            </td>
+            <td>17.11%</td>
+            <td>81.58%</td>
+        </tr>
+        <tr>
+            <td>S Dhawan</td>
+            <td class="freq-cell">12</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:66.67%;"></div></div>
+            </td>
+            <td>15.79%</td>
+            <td>97.37%</td>
+        </tr>
+        <tr>
+            <td>R Sharma</td>
+            <td class="freq-cell">2</td>
+            <td>
+                <div class="bar-container"><div class="bar" style="width:11.11%;"></div></div>
+            </td>
+            <td>2.63%</td>
+            <td>100.00%</td>
+        </tr>
+        <tr>
+            <td><b>TOTAL</b></td>
+            <td class="freq-cell"><b>76</b></td>
+            <td></td>
+            <td><b>100.00%</b></td>
+            <td><b>100.00%</b></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
